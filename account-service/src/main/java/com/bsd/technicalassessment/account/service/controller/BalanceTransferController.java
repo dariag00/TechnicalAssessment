@@ -6,6 +6,8 @@ import com.bsd.technicalassessment.model.Account;
 import com.bsd.technicalassessment.model.Transfer;
 import com.bsd.technicalassessment.model.TransferRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +34,10 @@ public class BalanceTransferController {
     }
 
     @PostMapping
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Account with provided IBAN not found"),
+            @ApiResponse(responseCode = "400", description = "The provided amount is not a valid amount \t\n Invalid transfer \t\n Not enough balance to perform the transfer")
+    })
     @Operation(description = "Submits a money transfer request between two accounts")
     public ResponseEntity<Transfer> transferMoney(@RequestBody @Valid TransferRequest transferRequest) {
         Account fromAccount = accountService.findByIBAN(transferRequest.getFromIban());

@@ -48,7 +48,6 @@ public class BalanceTransferServiceImplTest {
         Account fromExpected = Account.builder().id(1L).balance(BigDecimal.valueOf(750)).receivedTransfers(new ArrayList<>()).sentTransfers(List.of(expectedTransfer)).build();
         Account toExpected = Account.builder().id(2L).balance(BigDecimal.valueOf(750)).receivedTransfers(List.of(expectedTransfer)).sentTransfers(new ArrayList<>()).build();
 
-        Mockito.when(entityManager.getTransaction()).thenReturn(Mockito.mock(EntityTransaction.class));
         Mockito.when(transferRepository.save(Mockito.any())).then(returnsFirstArg());
 
         balanceTransferService.transfer(fromAccount, toAccount, amount);
@@ -80,8 +79,6 @@ public class BalanceTransferServiceImplTest {
     void transfer_notEnoughBalance() {
         Account fromAccount = Account.builder().id(1L).balance(BigDecimal.valueOf(100)).receivedTransfers(new ArrayList<>()).sentTransfers(new ArrayList<>()).build();
         Account toAccount = Account.builder().id(2L).balance(BigDecimal.valueOf(500)).receivedTransfers(new ArrayList<>()).sentTransfers(new ArrayList<>()).build();
-
-        Mockito.when(entityManager.getTransaction()).thenReturn(Mockito.mock(EntityTransaction.class));
 
         Assertions.assertThrows(NotEnoughBalanceException.class, () -> balanceTransferService.transfer(fromAccount, toAccount, BigDecimal.valueOf(250)));
 

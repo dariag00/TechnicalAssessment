@@ -56,9 +56,10 @@ public class AccountControllerTest {
     void createAccount() {
         AccountCreationRequest account = new AccountCreationRequest("IBAN1", null);
 
-        accountController.createAccount(account);
+        ResponseEntity<Account> responseEntity = accountController.createAccount(account);
 
         Mockito.verify(accountService).createAccount(account);
+        Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
     }
 
 }
