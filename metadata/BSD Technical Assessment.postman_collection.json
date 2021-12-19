@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "ec940c3a-9450-49ad-867b-15ed7a1b62ca",
+		"name": "BSD Technical Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Get Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{accountServiceBaseUrl}}/accounts",
+							"host": [
+								"{{accountServiceBaseUrl}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Accounts By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{accountServiceBaseUrl}}/accounts/10",
+							"host": [
+								"{{accountServiceBaseUrl}}"
+							],
+							"path": [
+								"accounts",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"iban\": \"AL35202111090000000001234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accountServiceBaseUrl}}/accounts",
+							"host": [
+								"{{accountServiceBaseUrl}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transfers",
+			"item": [
+				{
+					"name": "Transfer money between two accounts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fromIban\": \"IBAN1\",\r\n    \"toIban\": \"IBAN2\",\r\n    \"amount\": 1532.25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accountServiceBaseUrl}}/transfer",
+							"host": [
+								"{{accountServiceBaseUrl}}"
+							],
+							"path": [
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
