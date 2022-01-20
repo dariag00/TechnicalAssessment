@@ -1,3 +1,9 @@
+SpringBoot Application created for a Technical Assesment. 
+The application had the following requirements:
+Service should expose a Rest API to accept money transfers to other accounts. Money transfers should persist a new balance of accounts
+Service should expose a Rest API for getting the account details. You can disregard currencies at this time
+
+
 In order to create the docker image of the service, the following maven goal shall be executed over account-service:
 mvn clean spring-boot:build-image
 Command to execute the docker image:
@@ -14,7 +20,7 @@ POST /accounts -> Creates an account
 
 POST /transfers -> Accepts a transfer
 
-I would add the additional features in case of being a real feature:
+I would add the additional features in case of being a real and not a test feature:
 - Redis: in order to cache the requests and save some processing time
 - PostgressSQL: The transactions performed in this project need an ACID compliant database. Postgress fullfills that requirement.
 
